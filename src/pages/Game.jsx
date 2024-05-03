@@ -2,9 +2,9 @@ import React from 'react';
 
 const Game = () => {
     return (
-        <div>
-            la partie la
-        </div>
+        <>
+            <h2>La partie la</h2>
+        </>
     );
 };
 
