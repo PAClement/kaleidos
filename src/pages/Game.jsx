@@ -1,9 +1,11 @@
 import React from 'react';
+import SetupRound from "./SetupRound";
 
 const Game = () => {
+
     return (
         <>
-            <h2>La partie la</h2>
+            <SetupRound />
         </>
     );
 };
