@@ -15,6 +15,6 @@ root.render(
                     <Route path="/game" element={<Game />} />
                 </Routes>
             </Router>
-        </React.StrictMode>,
+        </React.StrictMode>
     </React.StrictMode>
 );
