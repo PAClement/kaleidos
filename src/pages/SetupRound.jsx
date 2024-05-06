@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Button from "../components/atoms/Button";
+import LocalService from "../services/localService";
 
 const SetupRound = () => {
 
@@ -11,8 +12,8 @@ const SetupRound = () => {
 
     function handleSubmit(event) {
         event.preventDefault();
-        console.log("Nombre sélectionné :", selectedRound);
-        console.log("Time sélectionné :", selectedTime);
+        LocalService.setItem('round', selectedRound);
+        LocalService.setItem('time', selectedTime);
     }
 
     return (
@@ -20,7 +21,7 @@ const SetupRound = () => {
             <form onSubmit={handleSubmit}>
                 <div className={"my-10"}>
                     <h2 className={"text-2xl text-center"}>Nombre de round</h2>
-                    <div className={"flex justify-around my-5 gap-10 text-4xl"}>
+                    <div className={"flex justify-around my-10 gap-10 text-4xl"}>
                         <label>
                             <input
                                 type="radio"
@@ -68,7 +69,7 @@ const SetupRound = () => {
                         </label>
                     </div>
                 </div>
-                <div className={"my-5"}>
+                <div className={"my-10"}>
                     <h2 className={"text-2xl text-center"}>Temps par round</h2>
                     <div className="my-10">
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Temps
@@ -81,8 +82,10 @@ const SetupRound = () => {
                                required/>
                     </div>
                 </div>
-                <Button type="submit" name={"Start le jeu"}
-                        color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}></Button>
+                <div className={"flex justify-center"}>
+                    <Button type="submit" name={"Start le jeu"}
+                            color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}></Button>
+                </div>
             </form>
         </div>
     );
