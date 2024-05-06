@@ -1,11 +1,13 @@
 import React from 'react';
 import SetupRound from "./SetupRound";
+import Play from "./Play";
 
 const Game = () => {
 
     return (
         <>
-            <SetupRound />
+            {/*<SetupRound />*/}
+            <Play round={1} />
         </>
     );
 };
