@@ -6,11 +6,12 @@ const SetupRound = (props) => {
 
     const customClass = "border-b-2 p-3 hover:bg-purple-600 active:bg-purple-500 cursor-pointer";
     const activeClass = "bg-purple-500 hover:bg-purple-500";
+    const rounds = [2, 4, 6, 8, 10];
 
     const [selectedRound, setSelectedRound] = useState(6);
     const [selectedTime, setSelectedTime] = useState(120);
 
-    function handleSubmit(event) {
+    const handleSubmit = (event) => {
         event.preventDefault();
         LocalService.setItem('round', selectedRound);
         LocalService.setItem('time', selectedTime);
@@ -24,70 +25,33 @@ const SetupRound = (props) => {
                 <div className={"my-10"}>
                     <h2 className={"text-2xl text-center"}>Nombre de round</h2>
                     <div className={"flex justify-around my-10 gap-10 text-4xl"}>
-                        <label>
-                            <input
-                                className={'hidden'}
-                                type="radio"
-                                value="2"
-                                checked={selectedRound === 2}
-                                onChange={(e) => setSelectedRound(parseInt(e.target.value))}
-                            />
-                            <span className={`${customClass} ${selectedRound === 2 ? activeClass : ''}`}>2</span>
-                        </label>
-                        <label>
-                            <input
-                                className={'hidden'}
-                                type="radio"
-                                value="4"
-                                checked={selectedRound === 4}
-                                onChange={(e) => setSelectedRound(parseInt(e.target.value))}
-                            />
-                            <span className={`${customClass} ${selectedRound === 4 ? activeClass : ''}`}>4</span>
-                        </label>
-                        <label>
-                            <input
-                                className={'hidden'}
-                                type="radio"
-                                value="6"
-                                checked={selectedRound === 6}
-                                onChange={(e) => setSelectedRound(parseInt(e.target.value))}
-                            />
-                            <span className={`${customClass} ${selectedRound === 6 ? activeClass : ''}`}>6</span>
-                        </label>
-                        <label>
-                            <input
-                                className={'hidden'}
-                                type="radio"
-                                value="8"
-                                checked={selectedRound === 8}
-                                onChange={(e) => setSelectedRound(parseInt(e.target.value))}
-                            />
-                            <span className={`${customClass} ${selectedRound === 8 ? activeClass : ''}`}>8</span>
-                        </label>
-                        <label>
-                            <input
-                                className={'hidden'}
-                                type="radio"
-                                value="10"
-                                checked={selectedRound === 10}
-                                onChange={(e) => setSelectedRound(parseInt(e.target.value))}
-                            />
-                            <span className={`${customClass} ${selectedRound === 10 ? activeClass : ''}`}>10</span>
-                        </label>
+                        {rounds.map((round) => (
+                            <label key={round}>
+                                <input
+                                    className={'hidden'}
+                                    type="radio"
+                                    value={round}
+                                    checked={selectedRound === round}
+                                    onChange={(e) => setSelectedRound(parseInt(e.target.value))}
+                                />
+                                <span
+                                    className={`${customClass} ${selectedRound === round ? activeClass : ''}`}>{round}</span>
+                            </label>
+                        ))}
                     </div>
                 </div>
                 <div className={"my-10"}>
-                    <h2 className={"text-2xl text-center"}>Temps par round</h2>
-                    <div className="my-10">
-                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Temps
-                            en seconde</label>
-                        <input type="number" min={0}
-                               className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                               focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-                               dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                               value={selectedTime} onChange={(e) => setSelectedTime(parseInt(e.target.value))}
-                               required/>
-                    </div>
+                    <h2 className={"text-2xl text-center mb-5"}>Temps par round</h2>
+                    <select
+                        className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-white-500
+                            focus:border-white-500 block w-full p-2.5 dark:bg-gray-700 dark:border-indigo-600 dark:placeholder-gray-400
+                            dark:text-white dark:focus:ring-white-500 dark:focus:border-white-500 outline-0"
+                        onChange={(e) => setSelectedTime(parseInt(e.target.value))}>
+                        <option value="120000" selected>2 min</option>
+                        <option value="150000">2 min 30</option>
+                        <option value="60000">1 min</option>
+                        <option value="90000">1 min 30</option>
+                    </select>
                 </div>
                 <div className={"flex justify-center"}>
                     <Button type="submit" name={"Start le jeu"}
