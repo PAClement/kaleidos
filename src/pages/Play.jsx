@@ -1,19 +1,16 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 const Play = (props) => {
-
-    useEffect(() => {
-
-    }, []);
 
     return (
         <div className={"flex"}>
             <div className={"w-4/5 "}>
-                <img src="/assets/img/game/kaleidos.jpg" className={'max-h-screen max-w-screen'} alt="kaleidos image"/>
+                <img src="/assets/img/game/kaleidos.jpg" className={'max-h-screen max-w-screen'} alt="kaleidos_image"/>
             </div>
             <div className={"max-w-1/5 flex flex-col justify-center items-center"}>
+                <h4 className={"text-2xl mb-10"}>Lettre : {props.letter}</h4>
                 <h3 className={"text-5xl mb-10"}>00 : 00</h3>
-                <h2 className={"text-3xl"}>Round {props.round}</h2>
+                <h2 className={"text-3xl"}>Round {props.currentRound}/{props.rounds}</h2>
             </div>
         </div>
     );
