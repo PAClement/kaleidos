@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import Button from "../components/atoms/Button";
 import LocalService from "../services/localService";
 
-const SetupRound = () => {
+const SetupRound = (props) => {
 
-    const customClass = "border-b-2 p-3 hover:bg-purple-300 active:bg-purple-500 cursor-pointer";
+    const customClass = "border-b-2 p-3 hover:bg-purple-600 active:bg-purple-500 cursor-pointer";
     const activeClass = "bg-purple-500 hover:bg-purple-500";
 
     const [selectedRound, setSelectedRound] = useState(6);
@@ -14,6 +14,8 @@ const SetupRound = () => {
         event.preventDefault();
         LocalService.setItem('round', selectedRound);
         LocalService.setItem('time', selectedTime);
+
+        props.startFunction();
     }
 
     return (
@@ -24,6 +26,7 @@ const SetupRound = () => {
                     <div className={"flex justify-around my-10 gap-10 text-4xl"}>
                         <label>
                             <input
+                                className={'hidden'}
                                 type="radio"
                                 value="2"
                                 checked={selectedRound === 2}
@@ -33,6 +36,7 @@ const SetupRound = () => {
                         </label>
                         <label>
                             <input
+                                className={'hidden'}
                                 type="radio"
                                 value="4"
                                 checked={selectedRound === 4}
@@ -42,6 +46,7 @@ const SetupRound = () => {
                         </label>
                         <label>
                             <input
+                                className={'hidden'}
                                 type="radio"
                                 value="6"
                                 checked={selectedRound === 6}
@@ -51,6 +56,7 @@ const SetupRound = () => {
                         </label>
                         <label>
                             <input
+                                className={'hidden'}
                                 type="radio"
                                 value="8"
                                 checked={selectedRound === 8}
@@ -60,6 +66,7 @@ const SetupRound = () => {
                         </label>
                         <label>
                             <input
+                                className={'hidden'}
                                 type="radio"
                                 value="10"
                                 checked={selectedRound === 10}
