@@ -4,7 +4,7 @@ import LocalService from "../services/localService";
 
 const SetupRound = (props) => {
 
-    const customClass = "border-b-2 p-3 hover:bg-purple-600 active:bg-purple-500 cursor-pointer";
+    const customClass = "p-3 px-5 rounded hover:bg-purple-600 active:bg-purple-500 cursor-pointer";
     const activeClass = "bg-purple-500 hover:bg-purple-500";
     const rounds = [2, 4, 6, 8, 10];
 
@@ -47,7 +47,7 @@ const SetupRound = (props) => {
                             focus:border-white-500 block w-full p-2.5 dark:bg-gray-700 dark:border-indigo-600 dark:placeholder-gray-400
                             dark:text-white dark:focus:ring-white-500 dark:focus:border-white-500 outline-0"
                         onChange={(e) => setSelectedTime(parseInt(e.target.value))}>
-                        <option value="120000" selected>2 min</option>
+                        <option value="120000" defaultValue>2 min</option>
                         <option value="150000">2 min 30</option>
                         <option value="60000">1 min</option>
                         <option value="90000">1 min 30</option>
