@@ -12,8 +12,8 @@ const Game = () => {
     const [roundWillStart, setRoundWillStart] = useState(true);
     const [gameIsFinish, setGameIsFinish] = useState(false);
 
-    const [round, setRound] = useState(0);
-    const [time, setTime] = useState(0);
+    const [maxRound, setMaxRound] = useState(0);
+    const [timePerRound, setTimePerRound] = useState(0);
 
     const [letter, setLetter] = useState('');
     const [currentRound, setCurrentRound] = useState(1)
@@ -27,15 +27,15 @@ const Game = () => {
     const startGame = () => {
         console.log('I started game');
 
-        setRound(LocalService.getItem('round'));
-        setTime(LocalService.getItem('time'));
+        setMaxRound(LocalService.getItem('round'));
+        setTimePerRound(LocalService.getItem('time'));
+        setGameIsStarted(true);
 
         startRound();
     };
 
     const startRound = () => {
         console.log('start round')
-        setGameIsStarted(true);
         setLetter(generateRandomLetter());
         // Logic for starting a round
         setTimeout(() => {
@@ -43,8 +43,8 @@ const Game = () => {
             setRoundWillStart(false);
 
             setTimeout(() => {
-                if (currentRound === round) {
-                    endGame();
+                if (currentRound === maxRound) {
+                    endLastRound();
                 } else {
                     endRound();
                 }
@@ -59,7 +59,7 @@ const Game = () => {
         setCurrentRound(currentRound + 1);
     };
 
-    const endGame = () => {
+    const endLastRound = () => {
         // Logic for ending the game
         setRoundFinish(true);
         setGameIsFinish(true);
@@ -67,10 +67,12 @@ const Game = () => {
 
     const finishGame = () => {
         setGameIsStarted(false);
+        resetParameter()
     }
 
     const resetParameter = () => {
-
+        setCurrentRound(1)
+        setLetter('')
     }
 
     return (
@@ -90,7 +92,7 @@ const Game = () => {
                                 <>
                                     <p>Le round est terminé</p>
                                     <p>affichage d'un bouton pour passer au second round</p>
-                                    <Button type="button" onClick={startGame} name={`Commencer Round ${currentRound}`}
+                                    <Button type="button" onClick={startRound} name={`Commencer Round ${currentRound}`}
                                             color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/>
                                 </>
                             }
@@ -101,14 +103,14 @@ const Game = () => {
                             {roundWillStart ?
                                 <p>Le round va commencer</p>
                                 :
-                                <Play timer={time} letter={letter} currentRound={currentRound} rounds={round}/>
+                                <Play timer={timePerRound} letter={letter} currentRound={currentRound} rounds={maxRound}/>
                             }
                         </>
                     }
                 </>
                 :
                 <>
-                        <SetupRound startFunction={startGame}/>
+                    <SetupRound startFunction={startGame}/>
                 </>
             }
         </>
