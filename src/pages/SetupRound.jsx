@@ -6,7 +6,7 @@ const SetupRound = (props) => {
 
     const customClass = "p-3 px-5 rounded hover:bg-purple-600 active:bg-purple-500 cursor-pointer";
     const activeClass = "bg-purple-500 hover:bg-purple-500";
-    const rounds = [2, 4, 6, 8, 10];
+    const rounds = [2, 3, 4, 5, 6, 7];
 
     const [selectedRound, setSelectedRound] = useState(6);
     const [selectedTime, setSelectedTime] = useState(120);
@@ -19,14 +19,12 @@ const SetupRound = (props) => {
         props.startFunction();
     }
 
-    return (
-        <div className={"flex flex-col items-center justify-center"}>
+    return (<div className={"flex flex-col items-center justify-center"}>
             <form onSubmit={handleSubmit}>
                 <div className={"my-10"}>
                     <h2 className={"text-2xl text-center"}>Nombre de round</h2>
                     <div className={"flex justify-around my-10 gap-10 text-4xl"}>
-                        {rounds.map((round) => (
-                            <label key={round}>
+                        {rounds.map((round) => (<label key={round}>
                                 <input
                                     className={'hidden'}
                                     type="radio"
@@ -36,8 +34,7 @@ const SetupRound = (props) => {
                                 />
                                 <span
                                     className={`${customClass} ${selectedRound === round ? activeClass : ''}`}>{round}</span>
-                            </label>
-                        ))}
+                            </label>))}
                     </div>
                 </div>
                 <div className={"my-10"}>
@@ -58,8 +55,7 @@ const SetupRound = (props) => {
                             color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}></Button>
                 </div>
             </form>
-        </div>
-    );
+        </div>);
 };
 
 export default SetupRound;

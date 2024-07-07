@@ -5,7 +5,7 @@ const Play = (props) => {
     return (
         <div className={"flex"}>
             <div className={"w-4/5 "}>
-                <img src="/assets/img/game/kaleidos.jpg" className={'max-h-screen max-w-screen'} alt="kaleidos_image"/>
+                <img src={props.img} className={'max-h-screen max-w-screen'} alt="kaleidos_image"/>
             </div>
             <div className={"max-w-1/5 flex flex-col justify-center items-center"}>
                 <h4 className={"text-2xl mb-10"}>Lettre : {props.letter}</h4>

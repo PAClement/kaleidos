@@ -16,12 +16,38 @@ const Game = () => {
     const [timePerRound, setTimePerRound] = useState(0);
 
     const [letter, setLetter] = useState('');
-    const [currentRound, setCurrentRound] = useState(1)
+    const [currentRound, setCurrentRound] = useState(1);
+    const [img, setImg] = useState('');
+
+    const [imgUseInParty, setImgUseInParty] = useState([]);
 
     const generateRandomLetter = () => {
         const alphabet = 'ABCDEFIJLMNOPRSTUV';
         const randomIndex = Math.floor(Math.random() * alphabet.length);
         return alphabet[randomIndex];
+    };
+
+    const getImg = () => {
+        let imgIsOk = true;
+        do {
+            imgIsOk = true;
+            const tempImg = `kaleidos${Math.floor(Math.random() * 7) + 1}.jpg`;
+
+            if (imgUseInParty.length > 0) {
+                imgUseInParty.forEach(target => {
+                    console.log(target)
+                    if (target === tempImg) {
+                        imgIsOk = false;
+                    }
+                });
+            }
+            if (imgIsOk) {
+                setImgUseInParty(imgUseInParty => [...imgUseInParty, tempImg]);
+                setImg(tempImg);
+            }
+        } while (!imgIsOk);
+        console.log(imgUseInParty)
+        console.log(img);
     };
 
     const startGame = () => {
@@ -30,6 +56,7 @@ const Game = () => {
         setMaxRound(LocalService.getItem('round'));
         setTimePerRound(LocalService.getItem('time'));
         setGameIsStarted(true);
+        setImgUseInParty([]);
 
         startRound();
     };
@@ -37,6 +64,8 @@ const Game = () => {
     const startRound = () => {
         console.log('start round')
         setLetter(generateRandomLetter());
+        getImg();
+
         // Logic for starting a round
         setTimeout(() => {
             setRoundFinish(false);
@@ -75,46 +104,30 @@ const Game = () => {
         setLetter('')
     }
 
-    return (
-        <>
-            {gameIsStarted ?
-                <>
-                    {roundFinish ?
-                        <>
-                            {gameIsFinish ?
-                                <>
-                                    <p>La partie est terminé</p>
-                                    <p>Retourner au menu</p>
-                                    <Button type="button" onClick={finishGame} name={`Commencer Round ${currentRound}`}
-                                            color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/>
-                                </>
-                                :
-                                <>
-                                    <p>Le round est terminé</p>
-                                    <p>affichage d'un bouton pour passer au second round</p>
-                                    <Button type="button" onClick={startRound} name={`Commencer Round ${currentRound}`}
-                                            color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/>
-                                </>
-                            }
+    return (<>
+        {gameIsStarted ? <>
+            {roundFinish ? <>
+                {gameIsFinish ? <>
+                    <p>La partie est terminé</p>
+                    <p>Retourner au menu</p>
+                    <Button type="button" onClick={finishGame} name={`Commencer Round ${currentRound}`}
+                            color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/>
+                </> : <>
+                    <p>Le round est terminé</p>
+                    <p>affichage d'un bouton pour passer au second round</p>
+                    <Button type="button" onClick={startRound} name={`Commencer Round ${currentRound}`}
+                            color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/>
+                </>}
 
-                        </>
-                        :
-                        <>
-                            {roundWillStart ?
-                                <p>Le round va commencer</p>
-                                :
-                                <Play timer={timePerRound} letter={letter} currentRound={currentRound} rounds={maxRound}/>
-                            }
-                        </>
-                    }
-                </>
-                :
-                <>
-                    <SetupRound startFunction={startGame}/>
-                </>
-            }
-        </>
-    );
+            </> : <>
+                {roundWillStart ? <p>Le round va commencer</p> :
+                    <Play timer={timePerRound} letter={letter} currentRound={currentRound} rounds={maxRound}
+                          img={'/assets/img/game/' + img}/>}
+            </>}
+        </> : <>
+            <SetupRound startFunction={startGame}/>
+        </>}
+    </>);
 };
 
 export default Game;
