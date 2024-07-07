@@ -97,8 +97,12 @@ const Game = () => {
     }
 
     const resetParameter = () => {
-        setCurrentRound(1)
-        setLetter('')
+        setCurrentRound(1);
+        setLetter('');
+        setRoundFinish(false);
+        setGameIsFinish(false);
+        setGameIsStarted(false);
+        setRoundWillStart(true);
     }
 
     return (<>
@@ -107,7 +111,7 @@ const Game = () => {
                 {gameIsFinish ? <>
                     <p>La partie est terminé</p>
                     <p>Retourner au menu</p>
-                    <Button type="button" onClick={finishGame} name={`Commencer Round ${currentRound}`}
+                    <Button type="button" onClick={finishGame} name={`Retourner au menu`}
                             color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/>
                 </> : <>
                     <p>Le round est terminé</p>
@@ -119,7 +123,7 @@ const Game = () => {
             </> : <>
                 {roundWillStart ? <p>Le round va commencer</p> :
                     <Play timer={timePerRound} letter={letter} currentRound={currentRound} rounds={maxRound}
-                          img={'/assets/img/game/' + img}/>}
+                          img={`/assets/img/game/${img}`}/>}
             </>}
         </> : <>
             <SetupRound startFunction={startGame}/>

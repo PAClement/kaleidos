@@ -8,7 +8,7 @@ const SetupRound = (props) => {
     const activeClass = "bg-purple-500 hover:bg-purple-500";
     const rounds = [2, 3, 4, 5, 6, 7];
 
-    const [selectedRound, setSelectedRound] = useState(6);
+    const [selectedRound, setSelectedRound] = useState(3);
     const [selectedTime, setSelectedTime] = useState(120);
 
     const handleSubmit = (event) => {
