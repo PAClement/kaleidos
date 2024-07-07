@@ -35,7 +35,6 @@ const Game = () => {
 
             if (imgUseInParty.length > 0) {
                 imgUseInParty.forEach(target => {
-                    console.log(target)
                     if (target === tempImg) {
                         imgIsOk = false;
                     }
@@ -46,8 +45,6 @@ const Game = () => {
                 setImg(tempImg);
             }
         } while (!imgIsOk);
-        console.log(imgUseInParty)
-        console.log(img);
     };
 
     const startGame = () => {
