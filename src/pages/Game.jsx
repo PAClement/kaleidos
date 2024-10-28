@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SetupRound from "./SetupRound";
 import Play from "./Play";
+import RoundFinish from "./RoundFinish";
 import LocalService from "../services/localService";
-import Button from "../components/atoms/Button";
+import GameIsFinish from "./GameIsFinish";
+import RoundBegin from "./RoundBegin";
 
 
 const Game = () => {
 
     const [gameIsStarted, setGameIsStarted] = useState(false);
-    const [roundFinish, setRoundFinish] = useState(false);
     const [roundWillStart, setRoundWillStart] = useState(true);
+    const [roundFinish, setRoundFinish] = useState(false);
     const [gameIsFinish, setGameIsFinish] = useState(false);
 
     const [maxRound, setMaxRound] = useState(0);
@@ -48,35 +50,38 @@ const Game = () => {
     };
 
     const startGame = () => {
-        console.log('I started game');
-
         setMaxRound(LocalService.getItem('round'));
         setTimePerRound(LocalService.getItem('time'));
         setGameIsStarted(true);
         setImgUseInParty([]);
-
-        startRound();
     };
 
+    useEffect(() => {
+        if (maxRound && timePerRound && gameIsStarted) {
+            startRound();
+        }
+    }, [maxRound, timePerRound, gameIsStarted]);
+
     const startRound = () => {
-        console.log('start round')
         setLetter(generateRandomLetter());
         getImg();
 
         // Logic for starting a round
         setTimeout(() => {
+            //Round Begin
             setRoundFinish(false);
             setRoundWillStart(false);
 
             setTimeout(() => {
+                //Round Finish
                 if (currentRound === maxRound) {
                     endLastRound();
                 } else {
                     endRound();
                 }
-            }, 1000);
+            }, timePerRound);
 
-        }, 1000);
+        }, 3000);
     };
 
     const endRound = () => {
@@ -109,19 +114,13 @@ const Game = () => {
         {gameIsStarted ? <>
             {roundFinish ? <>
                 {gameIsFinish ? <>
-                    <p>La partie est terminé</p>
-                    <p>Retourner au menu</p>
-                    <Button type="button" onClick={finishGame} name={`Retourner au menu`}
-                            color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/>
+                    <GameIsFinish finishGame={finishGame}/>
                 </> : <>
-                    <p>Le round est terminé</p>
-                    <p>affichage d'un bouton pour passer au second round</p>
-                    <Button type="button" onClick={startRound} name={`Commencer Round ${currentRound}`}
-                            color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/>
+                    <RoundFinish letter={letter} img={`/assets/img/game/${img}`} startRound={startRound} currentRound={currentRound}/>
                 </>}
 
             </> : <>
-                {roundWillStart ? <p>Le round va commencer</p> :
+                {roundWillStart ? <RoundBegin/> :
                     <Play timer={timePerRound} letter={letter} currentRound={currentRound} rounds={maxRound}
                           img={`/assets/img/game/${img}`}/>}
             </>}
