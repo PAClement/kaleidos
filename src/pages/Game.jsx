@@ -64,6 +64,8 @@ const Game = () => {
 
     const startRound = () => {
         setLetter(generateRandomLetter());
+        setRoundWillStart(true);
+        setRoundFinish(false);
         getImg();
 
         // Logic for starting a round
@@ -80,7 +82,6 @@ const Game = () => {
                     endRound();
                 }
             }, timePerRound);
-
         }, 3000);
     };
 
