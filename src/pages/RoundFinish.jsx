@@ -7,7 +7,7 @@ const RoundFinish = (props) => {
 
     useEffect(() => {
         setTimeout(() => {
-            setRoundFinish(false)
+            setRoundFinish(false);
         }, 5000);
     }, []);
 
