@@ -82,7 +82,7 @@ const Game = () => {
                     endRound();
                 }
             }, timePerRound);
-        }, 3000);
+        }, 5000);
     };
 
     const endRound = () => {
@@ -121,7 +121,7 @@ const Game = () => {
                 </>}
 
             </> : <>
-                {roundWillStart ? <RoundBegin/> :
+                {roundWillStart ? <RoundBegin letter={letter}/> :
                     <Play timer={timePerRound} letter={letter} currentRound={currentRound} rounds={maxRound}
                           img={`/assets/img/game/${img}`}/>}
             </>}
