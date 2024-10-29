@@ -117,11 +117,12 @@ const Game = () => {
                 {gameIsFinish ? <>
                     <GameIsFinish finishGame={finishGame}/>
                 </> : <>
-                    <RoundFinish letter={letter} img={`/assets/img/game/${img}`} startRound={startRound} currentRound={currentRound}/>
+                    <RoundFinish letter={letter} img={`/assets/img/game/${img}`} startRound={startRound}
+                                 currentRound={currentRound}/>
                 </>}
 
             </> : <>
-                {roundWillStart ? <RoundBegin letter={letter}/> :
+                {roundWillStart ? <RoundBegin letter={letter} currentRound={currentRound}/> :
                     <Play timer={timePerRound} letter={letter} currentRound={currentRound} rounds={maxRound}
                           img={`/assets/img/game/${img}`}/>}
             </>}
