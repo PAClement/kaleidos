@@ -14,7 +14,7 @@ const RoundBegin = (props) => {
 
         switch (timeLeft) {
             case 5:
-                setDisplayValueTime('Le round va commencer !');
+                setDisplayValueTime(`La manche ${props.currentRound} va commencer !`);
                 break;
             case 4:
                 setDisplayValueTime('3');
@@ -37,7 +37,7 @@ const RoundBegin = (props) => {
 
     return (
         <div className={'grid h-screen place-items-center'}>
-            <p className={'text-center text-9xl'}>{displayValueTime}</p>
+            <p className={'text-center text-6xl'}>{displayValueTime}</p>
             <div className={'flex flex-col gap-5 items-center'}>
                 <span className={'text-4xl'}>Lettre </span>
                 <span className={'text-4xl'}>{props.letter}</span>
