@@ -8,15 +8,18 @@ const RoundFinish = (props) => {
     useEffect(() => {
         setTimeout(() => {
             setRoundFinish(false);
-        }, 5000);
+        }, 500000);
     }, []);
 
     return (
         <>
             {roundFinish ?
-                <>
-                    <p>PARTIE TERMINÉ</p>
-                </>
+                <div className={'grid h-screen place-items-center'}>
+                    <div className={'flex flex-col gap-10 items-center'}>
+                        <span className={'text-6xl'}>MANCHE</span>
+                        <span className={'text-6xl'}>TERMINÉ</span>
+                    </div>
+                </div>
                 :
                 <>
                     <div className={"flex"}>
