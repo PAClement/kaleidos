@@ -17,7 +17,7 @@ const RoundFinish = (props) => {
                 <div className={'grid h-screen place-items-center'}>
                     <div className={'flex flex-col gap-10 items-center'}>
                         <span className={'text-6xl'}>MANCHE</span>
-                        <span className={'text-6xl'}>TERMINÉ</span>
+                        <span className={'text-6xl'}>TERMINÉE</span>
                     </div>
                 </div>
                 :
@@ -29,7 +29,7 @@ const RoundFinish = (props) => {
                         <div className={"max-w-1/5 flex flex-col justify-center items-center"}>
                             <h4 className={"text-2xl mb-10"}>Lettre : {props.letter}</h4>
                             <Button type="button" onClick={props.startRound}
-                                    name={`Commencer Round ${props.currentRound}`}
+                                    name={`Commencer manche ${props.currentRound}`}
                                     color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/>
                         </div>
                     </div>

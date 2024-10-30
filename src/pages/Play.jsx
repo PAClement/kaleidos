@@ -30,7 +30,7 @@ const Play = (props) => {
             <div className={"max-w-1/5 flex flex-col justify-center items-center"}>
                 <h4 className={"text-2xl mb-10"}>Lettre : {props.letter}</h4>
                 <h3 className={"text-5xl mb-10"}>{formattedTime}</h3>
-                <h2 className={"text-3xl"}>Round {props.currentRound}/{props.rounds}</h2>
+                <h2 className={"text-3xl"}>Manche {props.currentRound} / {props.rounds}</h2>
             </div>
         </div>);
 };

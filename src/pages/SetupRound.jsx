@@ -9,7 +9,7 @@ const SetupRound = (props) => {
     const rounds = [2, 3, 4, 5, 6, 7];
 
     const [selectedRound, setSelectedRound] = useState(3);
-    const [selectedTime, setSelectedTime] = useState(120);
+    const [selectedTime, setSelectedTime] = useState(120000);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -22,7 +22,7 @@ const SetupRound = (props) => {
     return (<div className={"flex flex-col items-center justify-center"}>
             <form onSubmit={handleSubmit}>
                 <div className={"my-10"}>
-                    <h2 className={"text-2xl text-center"}>Nombre de round</h2>
+                    <h2 className={"text-2xl text-center"}>Nombre de manche</h2>
                     <div className={"flex justify-around my-10 gap-10 text-4xl"}>
                         {rounds.map((round) => (<label key={round}>
                                 <input
@@ -38,7 +38,7 @@ const SetupRound = (props) => {
                     </div>
                 </div>
                 <div className={"my-10"}>
-                    <h2 className={"text-2xl text-center mb-5"}>Temps par round</h2>
+                    <h2 className={"text-2xl text-center mb-5"}>Temps par manche</h2>
                     <select
                         className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-white-500
                             focus:border-white-500 block w-full p-2.5 dark:bg-gray-700 dark:border-indigo-600 dark:placeholder-gray-400
