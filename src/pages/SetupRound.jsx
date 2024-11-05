@@ -48,6 +48,7 @@ const SetupRound = (props) => {
                         <option value="150000">2 min 30</option>
                         <option value="60000">1 min</option>
                         <option value="90000">1 min 30</option>
+                        <option value="100">10 secondes</option>
                     </select>
                 </div>
                 <div className={"flex justify-center"}>

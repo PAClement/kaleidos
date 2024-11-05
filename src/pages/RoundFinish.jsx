@@ -11,32 +11,30 @@ const RoundFinish = (props) => {
         }, 5000);
     }, []);
 
-    return (
-        <>
-            {roundFinish ?
-                <div className={'grid h-screen place-items-center'}>
-                    <div className={'flex flex-col gap-10 items-center'}>
-                        <span className={'text-6xl'}>MANCHE</span>
-                        <span className={'text-6xl'}>TERMINÉE</span>
+    return (<>
+            {roundFinish ? <div className={'grid h-screen place-items-center'}>
+                <div className={'flex flex-col gap-10 items-center'}>
+                    <span className={'text-6xl'}>MANCHE</span>
+                    <span className={'text-6xl'}>TERMINÉE</span>
+                </div>
+            </div> : <>
+                <div className={"flex"}>
+                    <div className={"w-4/5 "}>
+                        <img src={props.img} className={'max-h-screen max-w-screen'} alt="kaleidos_image"/>
+                    </div>
+                    <div className={"max-w-1/5 flex flex-col justify-center items-center"}>
+                        <h4 className={"text-2xl mb-10"}>Lettre : {props.letter}</h4>
+                        {props.currentRound === props.maxRound ? <Button type="button" onClick={props.startRound}
+                                                                         name={`Commencer manche ${props.currentRound}`}
+                                                                         color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/> :
+                            <Button type="button" onClick={props.endLastRound}
+                                    name={`Finir la partie`}
+                                    color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/>}
                     </div>
                 </div>
-                :
-                <>
-                    <div className={"flex"}>
-                        <div className={"w-4/5 "}>
-                            <img src={props.img} className={'max-h-screen max-w-screen'} alt="kaleidos_image"/>
-                        </div>
-                        <div className={"max-w-1/5 flex flex-col justify-center items-center"}>
-                            <h4 className={"text-2xl mb-10"}>Lettre : {props.letter}</h4>
-                            <Button type="button" onClick={props.startRound}
-                                    name={`Commencer manche ${props.currentRound}`}
-                                    color={"bg-purple-700 hover:bg-purple-800 focus:ring-purple-300"}/>
-                        </div>
-                    </div>
-                </>}
+            </>}
 
-        </>
-    );
+        </>);
 };
 
 export default RoundFinish;

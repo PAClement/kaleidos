@@ -76,11 +76,7 @@ const Game = () => {
 
             setTimeout(() => {
                 //Round Finish
-                if (currentRound === maxRound) {
-                    endLastRound();
-                } else {
-                    endRound();
-                }
+                endRound();
             }, timePerRound);
         }, 5000);
     };
@@ -93,13 +89,12 @@ const Game = () => {
 
     const endLastRound = () => {
         // Logic for ending the game
-        setRoundFinish(true);
         setGameIsFinish(true);
     };
 
     const finishGame = () => {
         setGameIsStarted(false);
-        resetParameter()
+        resetParameter();
     }
 
     const resetParameter = () => {
@@ -117,8 +112,8 @@ const Game = () => {
                 {gameIsFinish ? <>
                     <GameIsFinish finishGame={finishGame}/>
                 </> : <>
-                    <RoundFinish letter={letter} img={`/assets/img/game/${img}`} startRound={startRound}
-                                 currentRound={currentRound}/>
+                    <RoundFinish letter={letter} img={`/assets/img/game/${img}`} endLastRound={endLastRound} startRound={startRound}
+                                 maxRound={maxRound} currentRound={currentRound}/>
                 </>}
 
             </> : <>
